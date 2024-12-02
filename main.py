@@ -3,10 +3,18 @@ from PIL import Image
 import numpy as np
 import tensorflow as tf
 import joblib
+import os
+
+# Get the base directory of the script
+base_dir = os.path.dirname(__file__)
+
+# Construct relative paths to the model files
+digit_model_path = os.path.join(base_dir, "Trained Models", "digit_detector.h5")
+operator_model_path = os.path.join(base_dir, "Trained Models", "operator_detector.joblib")
 
 # Loading trained models
-digit_model = tf.keras.models.load_model("D:\Handwritten-Digits-Classification-main\Trained Models\digit_detector.h5")
-operator_model = joblib.load("D:\Handwritten-Digits-Classification-main\Trained Models\operator_detector.joblib")
+digit_model = tf.keras.models.load_model(digit_model_path)
+operator_model = joblib.load(operator_model_path)
 
 # Streamlit app
 st.title("Handwritten Math Equation Evaluator")
